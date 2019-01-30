@@ -57,13 +57,12 @@ router.post('/signup', (req, res) => {
       const token = jwt.sign(createdUser.toJSON(), process.env.TOKEN_SECRET_KEY, {
         expiresIn: 60 * 60 * 24 // 24 hrs in seconds
       }) // SecretKey should be an env variable process.env.TOKEN_SECRET
+      res.send({ token: token });
     })
     .catch(err =>{
       console.log(`Error in the POST /auth/signup when creating new user ${err}`);
       res.status(500).send('BNB 🐻, Database Error');
     });
-    
-    res.send({ token: token });
   })
   .catch(err=>{
     console.log(`Error in POST /auth/signup! ${err}`);
@@ -72,14 +71,15 @@ router.post('/signup', (req, res) => {
 });
 
 // This is what is returned when client queries for new user data
-router.get('/current/user', (req, res) => {
-  console.log('GET /auth/current/user STUB');
-
+router.post('/current/user', (req, res) => {
+  console.log('GET /auth/current/user STUB', req.user);
+  
   db.User.findById(req.user.id)
   .then(user=> {
-    if (!req.user || !req.user.id) {
-      return res.status(401).send({ user: null })
-    }
+    console.log(user);
+    // if (!user || !user.id) {
+    //   return res.status(401).send({ user: null })
+    // }
     res.send({ user: user });
   })
   .catch(err=>{

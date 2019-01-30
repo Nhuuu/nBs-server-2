@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema({
 userSchema.set('toJSON', {
   transform: function(doc, user) { // There is a third parameter called options that isn't needed
     const userJSON = {
-      id: user.id,
+      id: user._id,
       email: user.email,
       name: user.name
     }
@@ -37,7 +37,7 @@ userSchema.set('toJSON', {
 
 // A helper function to authenticate with bcrypt
 userSchema.methods.isAuthenticated = function(password) {
-  return bcrypt.compareSync(password, )
+  return bcrypt.compareSync(password, this.password)
 }
 
 // Mongoose's version of a beforeCreate hook

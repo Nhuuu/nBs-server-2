@@ -19,8 +19,10 @@ app.use(express.urlencoded({extended: false}));
 // Helper function: This allows our server to parse the incoming token from the client
 // This is being run as middleware, so it has access to the incoming request
 function fromRequest(req){
+  console.log(req.body.headers);
   if(req.body.headers.Authorization &&
     req.body.headers.Authorization.split(' ')[0] === 'Bearer'){
+      console.log(req.body.headers.Authorization.split(' ')[1])
     return req.body.headers.Authorization.split(' ')[1];
   }
   return null;
@@ -29,7 +31,7 @@ function fromRequest(req){
 // Controllers
 app.use('/auth', expressJwt({
   secret: process.env.TOKEN_SECRET_KEY,
-  getToken: fromRequest,
+  getToken: fromRequest
 }).unless({
   // Unless() Not required unless you need sth to be NOT protected
   path: [{ url: '/auth/login', methods: ['POST'] }, { url: '/auth/signup', methods: ['POST'] }]
