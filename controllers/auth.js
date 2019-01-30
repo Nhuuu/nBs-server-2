@@ -3,7 +3,7 @@ const router = express.Router();
 
 // POST /auth/login route - returns a JWT
 router.post('/login', (req, res) => {
-  res.send('POST /auth/signup');
+  res.send('POST /auth/login');
 });
 
 // POST /auth/signup route - create a user in the DB and then log them in
