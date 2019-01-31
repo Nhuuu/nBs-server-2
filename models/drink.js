@@ -34,7 +34,7 @@ const drinkSchema = new mongoose.Schema({
     type: String,
     maxlength: 250
   },
-  userId: {
+  user: {
   	type: mongoose.Schema.Types.ObjectId,
   	ref: 'User'
   }
