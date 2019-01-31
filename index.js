@@ -37,10 +37,14 @@ app.use('/auth', expressJwt({
   path: [{ url: '/auth/login', methods: ['POST'] }, { url: '/auth/signup', methods: ['POST'] }]
 }), require('./controllers/auth'));
 
+app.get('/', function(req, res, next) {
+  res.status(404).send({ message: 'Found' });
+});
 // This is the catch-all route. Ideally you don't get here unless you made a mistake on your front-end
 app.get('*', function(req, res, next) {
 	res.status(404).send({ message: 'Not Found' });
 });
+
 
 // Listen on specified PORT or default to 3000
 app.listen(process.env.PORT || 3000);
