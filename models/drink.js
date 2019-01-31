@@ -38,9 +38,8 @@ const drinkSchema = new mongoose.Schema({
   	type: mongoose.Schema.Types.ObjectId,
   	ref: 'User'
   }
-  }
 });
 
 
-// Exporting the User model
+// Exporting the Drink model
 module.exports = mongoose.model('Drink', drinkSchema);
