@@ -17,17 +17,17 @@ router.post('/new', (req, res) => {
 	})
 });
 
-// View all the drinks in your list
-router.get('/', (req, res) => {
-	db.Drink.find()
-	.then(drinks => {
-		res.status(200).send(drinks)
-	})
-	.catch(err => {
-		console.log('Error!', err);
-		res.status(404).send('ERROR!')
-	})
-});
+// We don't need GET routes on the server. We use fetch in the client instead, duh.
+// router.get('/', (req, res) => {
+// 	db.Drink.find()
+// 	.then(drinks => {
+// 		res.status(200).send(drinks)
+// 	})
+// 	.catch(err => {
+// 		console.log('Error!', err);
+// 		res.status(404).send('ERROR!')
+// 	})
+// });
 
 // Edit a single drink
 router.put('/:id', (req, res) => {
