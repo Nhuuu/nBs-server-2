@@ -43,6 +43,19 @@ router.put('/:id', (req, res) => {
 
 })
 
+router.delete('/:id', (req, res) => {
+	req.body.drink = JSON.parse(req.body.drink)
+	db.Drink.deleteOne({_id: req.body.id})
+	.then(deletedDrink => {
+		res.send(editedDrink)
+	})
+	.catch(err => {
+		console.log('Error!', err);
+		res.status(404).send('ERROR!')
+	})
+
+})
+
 
 
 module.exports = router;
