@@ -35,7 +35,7 @@ const drinkSchema = new mongoose.Schema({
     maxlength: 250
   },
   image: String,
-  userId: {
+  user: {
   	type: mongoose.Schema.Types.ObjectId,
   	ref: 'User'
   }
