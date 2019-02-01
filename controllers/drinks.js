@@ -45,7 +45,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
 	req.body.drink = JSON.parse(req.body.drink)
-	db.Drink.deleteOne({_id: req.body.id})
+	db.Drink.remove({_id: req.body.id})
 	.then(deletedDrink => {
 		res.send(editedDrink)
 	})
