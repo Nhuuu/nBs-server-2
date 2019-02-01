@@ -40,9 +40,7 @@ router.put('/:id', (req, res) => {
 		console.log('Error!', err);
 		res.status(404).send('ERROR!')
 	})
-
-})
-
+});
 
 
 module.exports = router;
